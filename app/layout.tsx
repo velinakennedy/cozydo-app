@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ThemeSwitcher from "./components/helpers/ThemeSwitcher";
 
 export const metadata: Metadata = {
   title: "CozyDo App",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeSwitcher />
+        {children}
+      </body>
     </html>
   );
 }
