@@ -1,0 +1,35 @@
+.container {
+    position: relative;
+    background-color: var(--secondary-300);
+    width: 7rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+}
+
+.button:hover {
+    background-color: var(--secondary-100);
+    border-radius: 5px;
+}
+
+.dropdown {
+    position: absolute;
+    display: flex;
+    top: 110%;
+    flex-direction: column;
+    background-color: var(--secondary-300);
+    width: 100%;
+    border-radius: 5px;
+}
+
+.hide {
+    display: none;
+}
