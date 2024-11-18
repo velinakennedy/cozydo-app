@@ -1,4 +1,4 @@
-[data-theme="theme-1"][data-scheme="light"] {
+[data-theme="twilight"][data-scheme="light"] {
     --text-50: rgb(235, 229, 255);
     --text-100: rgb(214, 204, 255);
     --text-200: rgb(173, 153, 255);
@@ -60,7 +60,7 @@
     --accent-950: rgb(25, 1, 6);
   }
 
-[data-theme="theme-1"][data-scheme="dark"] {
+[data-theme="twilight"][data-scheme="dark"] {
     --text-50: rgb(5, 0, 26);
     --text-100: rgb(10, 0, 51);
     --text-200: rgb(20, 0, 102);

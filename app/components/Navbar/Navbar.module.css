@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.brandName {
+    color: var(--primary-800);
+}

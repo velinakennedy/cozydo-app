@@ -1,12 +1,17 @@
 "use client";
+import Dropdown from "@/app/common/Dropdown/Dropdown";
 import { useEffect, useState } from "react";
+import styles from "./ThemeSwitcher.module.css";
 
 const ThemeSwitcher = () => {
-  const [currentTheme, setCurrentTheme] = useState("theme-1");
+  const [currentTheme, setCurrentTheme] = useState("default");
   const [currentScheme, setCurrentScheme] = useState("light");
 
+  const themeOptions = ["twilight", "default"];
+  const schemeOptions = ["light", "dark"];
+
   useEffect(() => {
-    const savedTheme = localStorage.getItem("data-theme") || "default-theme";
+    const savedTheme = localStorage.getItem("data-theme") || "default";
     const savedScheme = localStorage.getItem("data-scheme") || "light";
     setCurrentTheme(savedTheme);
     setCurrentScheme(savedScheme);
@@ -32,14 +37,9 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <div>
-      <h3>Choose Theme:</h3>
-      <button onClick={() => changeTheme("theme-1")}>Theme 1</button>
-      <button onClick={() => changeTheme("default-theme")}>Default Theme</button>
-
-      <h3>Choose Color Scheme:</h3>
-      <button onClick={() => changeScheme("light")}>Light Mode</button>
-      <button onClick={() => changeScheme("dark")}>Dark Mode</button>
+    <div className={styles.container}>
+      <Dropdown title="Scheme" items={schemeOptions} handleSelection={changeScheme} />
+      <Dropdown title="Theme" items={themeOptions} handleSelection={changeTheme} />
     </div>
   );
 };
