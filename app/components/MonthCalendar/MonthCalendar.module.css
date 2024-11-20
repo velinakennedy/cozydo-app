@@ -1,0 +1,55 @@
+.outerContainer {
+    width: 100%;
+    padding: 2rem;
+    color: var(--primary-800);
+}
+
+.innerContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr auto;
+    width: 100%;
+    padding: 3rem;
+    border-radius: 10px;
+    background-color: var(--primary-100);
+}
+
+.calendar {
+    width: 100%;
+    border-radius: 10px;
+    border: 1.5px solid var(--primary-300);
+}
+.week {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1.5px solid var(--primary-300);
+}
+
+.week:last-child, .day:last-child {
+    border: none;
+}
+
+.day {
+    height: 10rem;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 1rem;
+    border-right: 1.5px solid var(--primary-300);
+}
+
+.dayNum {
+    font-size: 18px;
+}
+
+.dayNameContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.dayName {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
