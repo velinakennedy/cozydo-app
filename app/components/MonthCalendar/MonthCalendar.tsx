@@ -1,17 +1,21 @@
+"use client";
 import getFullMonth from "@/app/utils/Calendar/getFullMonth";
-import { months, weekDays } from "@/app/utils/Calendar/names";
+import { weekDays } from "@/app/utils/Calendar/names";
+import CalendarDropdown from "../CalendarDropdown/CalendarDropdown";
 import styles from "./MonthCalendar.module.css";
+import { useState } from "react";
+import dayjs from "dayjs";
 
 const MonthCalendar = () => {
-  const month: number = 11;
-  const year: number = 2024;
-  const fullMonth = getFullMonth(month, year);
+  const [fullMonth, setFullMonth] = useState<Date[][]>(getFullMonth(dayjs().month(), dayjs().year()));
+
+  const handleSelection = (month: number, year: number) => {
+    setFullMonth(getFullMonth(month, year));
+  };
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerContainer}>
-        <div>
-          <h1>{months[month]}</h1>
-        </div>
+        <CalendarDropdown handleSelection={handleSelection} />
         <div className={styles.dayNameContainer}>
           {weekDays.map((day) => {
             return (
@@ -22,7 +26,7 @@ const MonthCalendar = () => {
           })}
         </div>
         <div className={styles.calendar}>
-          {fullMonth.map((week, index) => {
+          {fullMonth.map((week: Date[], index: number) => {
             return (
               <div className={styles.week} key={index}>
                 {week.map((day: Date, index: number) => {
