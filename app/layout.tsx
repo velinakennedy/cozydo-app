@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { StoreProvider } from "./StoreProvider";
 import Navbar from "./components/Navbar/Navbar";
 import MonthCalendar from "./components/MonthCalendar/MonthCalendar";
 
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <MonthCalendar />
-        {children}
+        <StoreProvider>
+          <Navbar />
+          <MonthCalendar />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );
