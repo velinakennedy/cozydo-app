@@ -1,21 +1,29 @@
 "use client";
+import { RootState } from "@/app/redux/store";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import getFullMonth from "@/app/utils/Calendar/getFullMonth";
 import { weekDays } from "@/app/utils/Calendar/names";
 import CalendarDropdown from "../CalendarDropdown/CalendarDropdown";
-import styles from "./MonthCalendar.module.css";
-import { useState } from "react";
 import dayjs from "dayjs";
+import styles from "./MonthCalendar.module.css";
 
 const MonthCalendar = () => {
   const [fullMonth, setFullMonth] = useState<Date[][]>(getFullMonth(dayjs().month(), dayjs().year()));
+  const month = useSelector((state: RootState) => state.calendar.month);
+  const year = useSelector((state: RootState) => state.calendar.year);
 
-  const handleSelection = (month: number, year: number) => {
+  const handleSelection = () => {
     setFullMonth(getFullMonth(month, year));
   };
+
+  useEffect(() => {
+    handleSelection();
+  }, [month, year]);
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerContainer}>
-        <CalendarDropdown handleSelection={handleSelection} />
+        <CalendarDropdown />
         <div className={styles.dayNameContainer}>
           {weekDays.map((day) => {
             return (

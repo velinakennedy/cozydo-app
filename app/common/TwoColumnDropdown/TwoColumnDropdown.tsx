@@ -1,22 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import styles from "./TwoColumnDropdown.module.css";
+import { updateMonth, updateYear } from "@/app/redux/features/calendarSlice";
+import { RootState } from "@/app/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { months } from "@/app/utils/Calendar/names";
 
-const TwoColumnDropdown = ({
-  title,
-  items,
-  currentMonth,
-  currentYear,
-  handleMonthSelection,
-  handleYearSelection,
-}: {
-  title: string;
-  items: [string[], number[]];
-  currentMonth: string;
-  currentYear: number;
-  handleMonthSelection: CallableFunction;
-  handleYearSelection: CallableFunction;
-}) => {
+const TwoColumnDropdown = ({ title, items }: { title: string; items: [string[], number[]] }) => {
+  const month = useSelector((state: RootState) => state.calendar.month);
+  const year = useSelector((state: RootState) => state.calendar.year);
+  const dispatch = useDispatch();
   const [isActive, setIsActive] = useState<boolean>(false);
   const dropdown = useRef<HTMLDivElement | null>(null);
 
@@ -44,9 +37,9 @@ const TwoColumnDropdown = ({
           {items[0].map((item, index) => {
             return (
               <button
-                className={`${styles.button} ${item === currentMonth && styles.selected}`}
+                className={`${styles.button} ${item === months[month] && styles.selected}`}
                 key={item}
-                onClick={() => handleMonthSelection(index)}
+                onClick={() => dispatch(updateMonth(index))}
               >
                 {item}
               </button>
@@ -56,7 +49,7 @@ const TwoColumnDropdown = ({
         <div className={styles.dropdownSection}>
           {items[1].map((item) => {
             return (
-              <button className={`${styles.button} ${item === currentYear && styles.selected}`} key={item} onClick={() => handleYearSelection(item)}>
+              <button className={`${styles.button} ${item === year && styles.selected}`} key={item} onClick={() => dispatch(updateYear(item))}>
                 {item}
               </button>
             );
