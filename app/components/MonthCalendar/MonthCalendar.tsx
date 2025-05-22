@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import getFullMonth from "@/app/utils/Calendar/getFullMonth";
 import { weekDays } from "@/app/utils/Calendar/names";
 import CalendarDropdown from "../CalendarDropdown/CalendarDropdown";
+import DayBlock from "../DayBlock.tsx/DayBlock";
 import dayjs from "dayjs";
 import styles from "./MonthCalendar.module.css";
 
@@ -24,7 +25,7 @@ const MonthCalendar = () => {
     <div className={styles.outerContainer}>
       <div className={styles.innerContainer}>
         <CalendarDropdown />
-        <div className={styles.dayNameContainer}>
+        <div className={styles.dayNameContainer}> 
           {weekDays.map((day) => {
             return (
               <p className={styles.dayName} key={day}>
@@ -39,9 +40,7 @@ const MonthCalendar = () => {
               <div className={styles.week} key={index}>
                 {week.map((day: Date, index: number) => {
                   return (
-                    <div className={styles.day} key={index}>
-                      <p className={styles.dayNum}>{day.getDate()}</p>
-                    </div>
+                    <DayBlock key={index} day={day.getDate()} />
                   );
                 })}
               </div>
